@@ -26,7 +26,8 @@ helpURL= "https://www.mathworks.com/help/matlab/index.html"
 
 % 2. What does the command 'clear all' do?
 %
-% Answer: Clear all does.......ANSWER STILL
+% Answer: Clear all command clears all functions, variables and any other
+% loaded items from the workspace. 
 %
 
 
@@ -38,12 +39,13 @@ averageAnswer= mean([1 7 21 32 67 32453])
 
 % 4. What command would you type to see a list of all installed toolboxes?
 
-        %<- command goes here
+ver   %<- command goes here
 
 % 5. Write some commands that would return a list of all of the available 
 % functions in the image processing toolbox? 
 
-
+help images
+doc images
 
 % 6. On the line below figure, write a command to draw a graph of 
 % x and y. 
@@ -52,23 +54,30 @@ x = linspace(-2*pi,2*pi);
 y = sin(x);
 
 figure
-        %<- command goes here
+  plot (x,y)      %<- command goes here
 
         
 
 % 7. Find a function that performs a statistical test you've seen used
 % in a journal article (there are many possible answers to this). What does
 % this function do and how would you use it?
-
+article= 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10009984'
 %
-% Answer: 
-%
+% Answer: Paired TTest. This stat test compares two independent groups of data 
+% and tells us if there is a significant difference in the means between the 
+% two groups. In matlab, you would use the function ttest2 () to compare
+% two independent sets of data to eachother. 
 
 % 8. What are the 2 major types of loops that MATLAB supports? What is the
 % difference between them?
 
 %
-% Answer: 
+% Answer: The two types of loops are For Loops and While loops. For loops
+% are used when you know the exact number of time you want to repeat a
+% block of code. While loops are used when you do not know exactly how many
+% iterations of the code you would like to run in advanced and the loop
+% will continue running as long as a specific logical condition continues
+% to be met. 
 % 
 
 
@@ -76,7 +85,10 @@ figure
 % an answer. 
 
 %
-% Answer: 
+% Answer: NaN means Not a Number. An example of when this is seen is when
+% data is not properly assigned to a variable during data collection (i.e.
+% mocap or EMG data). This also occurs when an undefined mathematic
+% operation is performed. For example, 0/0 is NaN. 
 %
 
 
@@ -86,28 +98,31 @@ figure
 % any of the values in A.
 
 A = [1 2 3 2 1 NaN 1 2 3 NaN];
-S = sum(A)
-
+S = sum(A,"omitnan")
 
 % 11. I used to love playing the game minesweeper. Is there a way that I
 % could play a similar game on Matlab? Write the command that would launch
 % the game if so. 
 
-
-
+addpath('C:/path/to'); 
+minesweeper
+%I saw many different ways to do this. I am not sure if it is suppose to
+%launch on my computer. 
 
 % 12. Create a variable myAge and assign it the value of your age. Then 
 % create a new variable called ageLessTwo and subtract two from the value of the
 % myAge variable. Create a third variable called agePlusOne and add one to 
 % the value of the myAge variable.
 
-
+myAge=27
+ageLessTwo=(myAge)-2
+ agePlusOne=(myAge)+1
 
 % 13. Use the built-in function namelengthmax to find out the maximum number of
 % characters that you can have in an identifier name under your version of
 % MATLAB. Assign the value to a variable called maxNameLength.
 
-
+maxNameLength=2048
 
 
 % 14. You need to convert some weight values from metric to standard units. 
@@ -118,25 +133,32 @@ S = sum(A)
 originalWeightkg = 100;
 % Add your code on the next line
 
+originalWeightlbs= 99;
+originalWeightoz= 198;
+
 
 
 % 15. Assign a number with a decimal place to an appropriately named variable. Convert the
 % variable to the type int32 and store the result in a new variable (hint: this is known
 % as casting in computer programming). Use whos to check your result. 
 
-
+dec=5.7
+int32(dec)
+newVariable=int32(dec)  %create the new variable
 
 
 % 16. Create a variable called weightInLBs to store a weight in pounds. Convert this to 
 % kilograms using an appropriate calculation or function and assign the result to a variable weightInKgs.
 
-
+weightInLBs=150
+weightInKgs = weightInLBs * 0.453592; % Convert pounds to kilograms
 
 
 % 18. Create a variable fTemp to store a temperature in degrees Fahrenheit (F). 
 % Convert this to degrees Celsius (C) using an appropriate 
 % calculation and store the result in a variable cTemp.
-
+fTemp=98
+cTemp = (fTemp - 32) * 5/9; % Convert Fahrenheit to Celsius
 
 
 
@@ -145,21 +167,23 @@ originalWeightkg = 100;
 % 1.1000 1.3000 1.5000 1.7000 
 % 8 6 4 2
 % Store your results with variable names vecA, vecB and vecC respectively.
-
-
-
-
+vecA= [2:1:7]
+vecB= [1.1000:.2:1.7000]
+vecC=[8:-2:2]
 % 20. Give a MATLAB expression that would create a vector 
 % (assigned to a variable called vec) of 50 elements that range, equally spaced, 
 % from 0 to 2pi. 
 
-
+ vec=linspace (0,2*pi,50)
 
 
 % 21. Using the colon operator and the transpose operator, 
 % create a column vector that has the values -1 to 1 in steps of 0.5.
 % Assign your answer to a variable called colVec.
 
+
+Vec1= [-1:.5:1]
+colVec= transpose(Vec1)
 
 
 
@@ -169,35 +193,38 @@ originalWeightkg = 100;
 % dimensions given by the values of rows and cols. The resultMat should
 % change each time you execute your code. 
 
-
-
+rows= randi([1,5],1)
+cols= randi([1,5],1)
+resultMat= zeros(rows,cols)
 
 % 23. Create a vector of five random integers, each in the inclusive range 
 % from -10 to 10 assigned to a variable named originalVec. Perform each of 
 % the following on the original vector and store your results in appropriately 
 % named variables. (you should have a seperate line of code for each)
-
+originalVec= randi([-10,10], 1, 5)
 % - subtract 3 from each element
-
+subVec= (originalVec-3)
 
 % - count how many are positive
-
+posVec=sum(originalVec>0)
 
 % - get the absolute value of each element
-
+absVec= abs(originalVec)
 
 
 % - find the maximum.
-
+maxVec= max(originalVec)
 
 
 % 24. Write some code that will calculate the area of a trapezoid. Create
 % variables for base1, base2, and height and assign them values. Store the
 % result of your calculation in a variable called trapArea. Comment your
 % code so that another user can understand what your code does. 
-
-
-
+base1=4
+base2=6
+height=8
+%area of a trapezoid is A=((base1+base2)*(height))/2
+trapArea=((base1+base2)*(height))/2
 
 
 % 25. If you were to start your own lab/business, a key metric that you 
@@ -210,9 +237,9 @@ originalWeightkg = 100;
 % costs and then calculates the ROI and stores the value in a variable called
 % ROI.
 
-
-
-
+totalRev=input('what is your total revenue?') %prompting total revenue value
+totalCosts=input('what is your total costs?') %prompting total costs value
+ROI = (totalRev - totalCosts) / totalCosts * 100 %calculating ROI
 
 %% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%  Part 2: Hello World %%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -225,7 +252,9 @@ originalWeightkg = 100;
 
 %%% Enter the code for your program below this line
 
-
+disp('Hello World')
+userInput = input('Please enter a message: ', 's');
+disp(userInput);
 
 
 
